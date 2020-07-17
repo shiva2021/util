@@ -2,7 +2,7 @@ let mix = require("laravel-mix");
 mix.setPublicPath("public/build");
 mix.sass("vue/assets/sass/app.scss", "public/build/sass");
 
-mix.js("vue/js/main.js", "public/build");
+mix.js("vue/main.js", "public/build");
 mix.webpackConfig({
   resolve: {
     alias: {
