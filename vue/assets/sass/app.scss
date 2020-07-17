@@ -1,0 +1,6 @@
+@import "./variables.scss";
+@import "~bulma/sass/utilities/_all";
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+@import "./overrides.scss";
