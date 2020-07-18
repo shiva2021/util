@@ -22,5 +22,6 @@ const Route = use('Route')
 
 Route.post('/api/fileupload', 'BaseController.fileUplaod')
 Route.get('/api/getfile/:name', 'BaseController.fileDownload')
+Route.get('/api/delete/files/:name?', 'BaseController.filesDelete')
 
 Route.any('*', ({view}) =>  view.render('app'))

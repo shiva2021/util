@@ -1,12 +1,12 @@
 <template>
   <section class="section">
     <div class="container">
-      <h2 class="title">Convert Excel Data into JSON data</h2>
-      <hr />
-      <div class="schema is-centered">
+      <div class="columns is-centered">
         <div class="column is-half">
+          <h2 class="title has-text-centered">Convert Excel Data into JSON data</h2>
+          <hr />
           <b-field class="has-text-centered">
-            <b-upload @input="onFileUpload" v-model="dropFiles" multiple drag-drop>
+            <b-upload @input="onFileUpload" v-model="newFile" native drag-drop>
               <section class="section">
                 <div class="content has-text-centered">
                   <p>
@@ -17,18 +17,21 @@
               </section>
             </b-upload>
           </b-field>
-
+          <b-field class="has-text-centered">
           <div class="tags">
-            <span v-for="(file, index) in dropFiles" :key="index" class="tag is-primary">
-              {{file.name}}
+            <span v-if="newFile" class="tag is-primary">
+              {{newFile.name}}
               <button
                 class="delete is-small"
                 type="button"
-                @click="deleteDropFile(index)"
+                @click="deleteDropFile"
               ></button>
             </span>
           </div>
-          <button class="button" @click="onFileDownload">Download File</button>
+          </b-field>
+          <b-field class="has-text-centered">
+            <button class="button" @click="onFileDownload">Download File</button>
+          </b-field>
         </div>
       </div>
     </div>
@@ -37,28 +40,29 @@
 
 <script>
 import XLSX from 'xlsx';
+import Slug from 'slug';
 export default {
   data() {
     return {
-      dropFiles: [],
+      newFile: null,
       schema:{},
       excelData: [],
       temp:{},
       filename:""
     };
   },
+  async created(){
+      this.deleteFiles();
+  },
   methods: {
-    deleteDropFile(index) {
-      this.dropFiles = [];
-      this.schema = {};
-      this.excelData = [];
-      this.temp ={};
-      this.filename = ""
-    },
+      deleteDropFile() {
+        this.deleteFiles(this.filename);
+        this.clearFields();
+      },
 
-  onFileUpload(value) {
+    onFileUpload(value) {
       try {
-        this.filename = value[0].name.split('.')[0];
+        this.filename = Slug(value.name.split('.')[0], '-').toLowerCase();
         let reader = new FileReader();
         reader.onload = function(e) {
           var data = new Uint8Array(e.target.result);
@@ -86,9 +90,9 @@ export default {
           }.bind(this))
           this.generateFile(this.excelData);
         }.bind(this);
-        reader.readAsArrayBuffer(value[0]);
+        reader.readAsArrayBuffer(value);
       } catch (error) {
-        debugger;
+        console.log(error);
       }
     },
 
@@ -107,12 +111,37 @@ export default {
       }
     },
 
-    onFileDownload(){
+    async onFileDownload(){
       try {
-        const {data} = await this.$axios.get('/api/getfile/'+this.filename);
+        if(!this.filename){
+          this.$buefy.toast.open('Nothing has been been uploaded yet!')
+          return false;
+        }
+        window.open(location.origin+'/api/getfile/'+this.filename, '_blank')
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async deleteFiles(name){
+      try {
+        name = name ? name : "";
+        const {data} = await this.$axios.get('/api/delete/files/'+name);
+        if(data){
+          let message = data.message;
+          this.$buefy.toast.open(message);
+        }
       } catch (error) {
         
       }
+    },
+
+    clearFields(){
+      this.filename = "";
+      this.newFile = null;
+      this.schema = {};
+      this.excelData = [];
+      this.temp ={};
     }
   }
 };
