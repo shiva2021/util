@@ -21,6 +21,6 @@ const Route = use('Route')
 // Route.on('/').render('welcome')
 
 Route.post('/api/fileupload', 'BaseController.fileUplaod')
-
+Route.get('/api/getfile/:name', 'BaseController.fileDownload')
 
 Route.any('*', ({view}) =>  view.render('app'))

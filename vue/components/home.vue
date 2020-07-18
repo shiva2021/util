@@ -28,6 +28,7 @@
               ></button>
             </span>
           </div>
+          <button class="button" @click="onFileDownload">Download File</button>
         </div>
       </div>
     </div>
@@ -42,16 +43,22 @@ export default {
       dropFiles: [],
       schema:{},
       excelData: [],
-      temp:{}
+      temp:{},
+      filename:""
     };
   },
   methods: {
     deleteDropFile(index) {
-      this.dropFiles.splice(index, 1);
+      this.dropFiles = [];
+      this.schema = {};
+      this.excelData = [];
+      this.temp ={};
+      this.filename = ""
     },
 
   onFileUpload(value) {
       try {
+        this.filename = value[0].name.split('.')[0];
         let reader = new FileReader();
         reader.onload = function(e) {
           var data = new Uint8Array(e.target.result);
@@ -88,11 +95,23 @@ export default {
     async generateFile(data){
       if(data){
         try {
-          const response =   await this.$axios.post('/api/fileupload', data);
-          debugger;
+          const payload = {
+            data: data,
+            name: this.filename
+          }
+          const response = await this.$axios.post('/api/fileupload', payload);
+          this.$buefy.toast.open(response.data.message);
         } catch (error) {
           console.log(error);
         }
+      }
+    },
+
+    onFileDownload(){
+      try {
+        const {data} = await this.$axios.get('/api/getfile/'+this.filename);
+      } catch (error) {
+        
       }
     }
   }
