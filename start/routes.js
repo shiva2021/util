@@ -1,5 +1,7 @@
 'use strict'
 
+const { route } = require('@adonisjs/framework/src/Route/Manager')
+
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -17,5 +19,8 @@
 const Route = use('Route')
 
 // Route.on('/').render('welcome')
+
+Route.post('/api/fileupload', 'BaseController.fileUplaod')
+
 
 Route.any('*', ({view}) =>  view.render('app'))
