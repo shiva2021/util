@@ -8,7 +8,7 @@
                 >
             </b-navbar-item>
         </template>
-        <template slot="start">
+        <template slot="start"> 
             <b-navbar-item :to="{ path: '/' }">
                 Home
             </b-navbar-item>
