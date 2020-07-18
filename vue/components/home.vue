@@ -65,6 +65,7 @@ export default {
         this.filename = Slug(value.name.split('.')[0], '-').toLowerCase();
         let reader = new FileReader();
         reader.onload = function(e) {
+          const loader = this.$buefy.loading.open();
           var data = new Uint8Array(e.target.result);
           var workbook = XLSX.read(data, { type: "array" });
           var first_worksheet = workbook.Sheets[workbook.SheetNames[0]];
@@ -81,7 +82,7 @@ export default {
                   let idx = 0;
                   for (const key in this.temp) {
                     if (this.temp.hasOwnProperty(key)) {
-                      this.temp[key] = val[idx];
+                      this.temp[key] = val[idx] ? val[idx] : "";
                     }
                     idx = idx + 1;
                   }
@@ -89,6 +90,7 @@ export default {
             }
           }.bind(this))
           this.generateFile(this.excelData);
+          loader.close();
         }.bind(this);
         reader.readAsArrayBuffer(value);
       } catch (error) {
@@ -97,6 +99,7 @@ export default {
     },
 
     async generateFile(data){
+      const loader = this.$buefy.loading.open();
       if(data){
         try {
           const payload = {
@@ -105,10 +108,14 @@ export default {
           }
           const response = await this.$axios.post('/api/fileupload', payload);
           this.$buefy.toast.open(response.data.message);
+          this.excelData = [];
+          this.temp = [];
+          this.schema = {};
         } catch (error) {
           console.log(error);
         }
       }
+      loader.close()
     },
 
     async onFileDownload(){
@@ -124,6 +131,7 @@ export default {
     },
 
     async deleteFiles(name){
+        const loader = this.$buefy.loading.open();
       try {
         name = name ? name : "";
         const {data} = await this.$axios.get('/api/delete/files/'+name);
@@ -134,6 +142,7 @@ export default {
       } catch (error) {
         
       }
+      loader.close();
     },
 
     clearFields(){
