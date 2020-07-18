@@ -3,26 +3,26 @@
         <template slot="brand">
             <b-navbar-item tag="router-link" :to="{ path: '/' }">
                 <img
-                    src="/Artboard@2x.svg"
+                    src="/Artboard.svg"
                     alt="Lightweight UI components for Vue.js based on Bulma"
                 >
             </b-navbar-item>
         </template>
         <template slot="start">
-            <b-navbar-item href="#">
+            <b-navbar-item :to="{ path: '/' }">
                 Home
             </b-navbar-item>
             <b-navbar-item :to="{ path : '/documentation'}">
                 Documentation
             </b-navbar-item>
-            <!-- <b-navbar-dropdown label="Info">
-                <b-navbar-item href="#">
-                    About
+            <b-navbar-dropdown label="Utilities">
+                <b-navbar-item :to="{ path: '/' }">
+                    Excel to JSON Converter
                 </b-navbar-item>
                 <b-navbar-item href="#">
-                    Contact
+                    Coming Soon
                 </b-navbar-item>
-            </b-navbar-dropdown> -->
+            </b-navbar-dropdown>
         </template>
 
         <template slot="end">
