@@ -17,21 +17,28 @@
               </section>
             </b-upload>
           </b-field>
-          <b-field class="has-text-centered">
-          <div class="tags">
-            <span v-if="newFile" class="tag is-primary">
-              {{newFile.name}}
-              <button
-                class="delete is-small"
-                type="button"
-                @click="deleteDropFile"
-              ></button>
-            </span>
+          <div v-if="filename" style="margin-bottom:5%">
+            <hr/>
+            <h2 class="subtitle has-text-centered" v-if="filename">Your file ready for download!</h2>
           </div>
+          <b-field style="margin-bottom:5%">
+            <div class="container has-text-centered">
+              <div class="tags has-text-centered is-centered">
+                <span v-if="newFile" class="tag is-primary">
+                  {{filename}}
+                  <button
+                    class="delete is-small"
+                    type="button"
+                    @click="deleteDropFile"
+                  ></button>
+                </span>
+              </div>
+            </div>
           </b-field>
-          <b-field class="has-text-centered">
+          <b-field class="has-text-centered" v-if="filename">
             <button class="button" @click="onFileDownload">Download File</button>
           </b-field>
+          <hr />
         </div>
       </div>
     </div>
