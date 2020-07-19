@@ -7,7 +7,8 @@ mix.webpackConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "vue"),
-      "@resources": path.resolve(__dirname, "resources")
+      "@resources": path.resolve(__dirname, "resources"),
+      "@public": path.resolve(__dirname, "public"),
     }
   },
   output: {
