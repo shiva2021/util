@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "debug": "adonis serve --dev --debug",
+    "build": "npm run production",
     "start": "node server.js",
     "test": "node ace test",
     "dev": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
