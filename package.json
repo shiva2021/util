@@ -18,7 +18,7 @@
     "adonisjs",
     "adonis-app"
   ],
-  "author": "",
+  "author": "Shivang Chaturvedi",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
