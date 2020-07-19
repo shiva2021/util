@@ -25,7 +25,7 @@
             </b-navbar-dropdown>
         </template>
 
-        <template slot="end">
+        <!-- <template slot="end">
             <b-navbar-item tag="div">
                 <div class="buttons">
                     <a class="button is-primary">
@@ -36,6 +36,6 @@
                     </a>
                 </div>
             </b-navbar-item>
-        </template>
+        </template> -->
     </b-navbar>
 </template>
