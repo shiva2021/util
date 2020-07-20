@@ -44,7 +44,7 @@
             <ul style="line-height:2rem">
               <li>
                 <div class="container">
-                  <p class="subtitle">You can convert on excel sheet to JSON at a time.</p>
+                  <p class="subtitle">You can convert <b>one</b> excel sheet to JSON at a time.</p>
                 </div>
               </li>
               <li>
@@ -54,12 +54,12 @@
               </li>
               <li>
                 <div class="container">
-                  <p class="subtitle">Drag on the upload section to upload the file or simply drag and drop the excel sheet.The JSON file will be readily available for download.</p>
+                  <p class="subtitle">Click on the upload section to upload the file or simply drag and drop the excel sheet.The JSON file will be readily available for download.</p>
                 </div>
               </li>
               <li>
                 <div class="container">
-                  <p class="subtitle">Remember that the tool will not retain any data. On browser close, or page refresh, the JSON file will be deleted from the server.</p>
+                  <p class="subtitle">Remember that the tool will not retain any data. On closing the browser, or page refresh, the JSON file will be deleted from the server.</p>
                 </div>
               </li>
             </ul>
