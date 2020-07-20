@@ -39,6 +39,31 @@
             <button class="button" @click="onFileDownload">Download File</button>
           </b-field>
           <hr />
+          <h2 class="title has-text-centered">Follow these simple instructions</h2>
+          <div class="container-fluid">
+            <ul style="line-height:2rem">
+              <li>
+                <div class="container">
+                  <p class="subtitle">You can convert on excel sheet to JSON at a time.</p>
+                </div>
+              </li>
+              <li>
+                <div class="container">
+                  <p class="subtitle">The Excel sheet must have the names of the columns in the first row.</p>
+                </div>
+              </li>
+              <li>
+                <div class="container">
+                  <p class="subtitle">Drag on the upload section to upload the file or simply drag and drop the excel sheet.The JSON file will be readily available for download.</p>
+                </div>
+              </li>
+              <li>
+                <div class="container">
+                  <p class="subtitle">Remember that the tool will not retain any data. On browser close, or page refresh, the JSON file will be deleted from the server.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

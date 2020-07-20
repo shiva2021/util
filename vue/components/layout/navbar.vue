@@ -19,9 +19,9 @@
                 <b-navbar-item :to="{ path: '/' }">
                     Excel to JSON Converter
                 </b-navbar-item>
-                <b-navbar-item href="#">
+                <!-- <b-navbar-item href="#">
                     Coming Soon
-                </b-navbar-item>
+                </b-navbar-item> -->
             </b-navbar-dropdown>
         </template>
 
